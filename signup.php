@@ -26,7 +26,9 @@ $db = mysqli_connect("localhost", "root", "","instajob");
     } else {
       //failed
       $_SESSION['message'] = "The two passwords do not match";
-
+      echo '<script language="javascript">';
+      echo 'alert("Two passwords are not matching!! ")';
+     echo '</script>';
     }
   }
 ?>

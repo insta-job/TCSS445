@@ -50,8 +50,8 @@
           }
 
           for ($x = 0; $x < $json_length; $x++) {
-            echo "<fieldset class='majorpoints'>
-                  <form method = 'post' action = 'search.php'>
+            echo "<form method = 'post' action = 'search.php'>
+            <fieldset class='majorpoints'>
                     <legend class='majorpointslegend'>$title_array[$x]</legend>
                     <div class='hiders' style='display:none'>
                       <h3>Job Type: $type_array[$x]</h3>
@@ -61,8 +61,8 @@
                       <div>Description: $description_array[$x]</div>
                       </div>
                     <button type='submit' name='add' value = '$x'>Add</button>
-                    </form>
-                  </fieldset>";
+                  </fieldset>
+                          </form>";
 
           }
           echo "<script type = 'text/javascript'>
