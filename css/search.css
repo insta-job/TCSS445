@@ -1,0 +1,116 @@
+body {
+   margin: 0;
+   padding: 0;
+   background: url("../img/back.jpg");
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   background-position: center;
+   font-family: sans-serif;
+   overflow: auto;
+}
+h2 {
+  margin: 0 0 10px;
+  padding: 0;
+  color: #fff;
+  font-size: 24px;
+}
+.box {
+  position: absolute;
+  width: 300px;
+  height: 200px;
+  z-index: 15;
+  top: 50%;
+  left: 50%;
+  margin: -100px 0 0 -300px;
+}
+.container {
+  top: 50%;
+  left: 50%;
+  margin-top: 20px;
+  width: 200%;
+
+}
+img {
+  width: 50px;
+  height: 50px;
+}
+.wrap {
+  width: 300px;
+  position: relative;
+  left: 70%;
+  font-size: 20px;
+}
+
+.wrap img {
+float: left;
+}
+h1 {
+  font-style: italic;
+  font-family: cursive;
+  color: #D2691E;
+
+}
+.wrap h1 {
+line-height: 50px;
+}
+
+fieldset, legend {
+  margin: 0;
+  padding: 0;
+}
+fieldset {
+  border: thin solid white;
+  margin-top: 9px;
+  padding: 2em;
+  width: 125%;
+  border-radius: 25px;
+  border: 2px solid #808080;
+  background:#f0911d;
+}
+legend {
+  font-weight: bold;
+  float: left;
+  margin-bottom: .5em;
+  width: 100%;
+  font-size: 20px;
+  text-align: center;
+  font-family: sans-serif;
+}
+form {
+  display: flex; /* 2. display flex to the rescue */
+  flex-direction: row;
+}
+input {
+  position: relative;
+  display: block;
+  font-size: 20px;
+  margin-right: 15px;
+  box-sizing: border-box;
+  transition: .5s;
+}
+input[type="text"] {
+  background: #fff;
+  width: 340px;
+  height: 50px;
+  border: none;
+  outline: none;
+  padding: 0 25px;
+  margin: 10 10 10 10;
+}
+button {
+  position: relative;
+  left: -10px;
+  top: 1px;
+  text-align: center;
+  border: none;
+  width: 150px;
+  height: 50px;
+  outline: none;
+  cursor: pointer;
+  background: #ffc107;
+  color: #fff;
+}
+input[type="submit"]:hover {
+  background: #ff5722;
+}
