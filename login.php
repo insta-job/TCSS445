@@ -19,10 +19,11 @@ $db = mysqli_connect("localhost", "root", "","instajob");
        }
       $_SESSION['user_type'] = $usertype;
       header('location: index.php'); //redirect to home page
-   } else {
-     echo '<script language="javascript">';
-     echo 'alert("Password or username is not corrected!")';
-    echo '</script>';
+    } else {
+      echo '<script language="javascript">';
+      echo 'alert("Password or username is not matching!!")';
+     echo '</script>';
+
    }
  }
  ?>
@@ -42,12 +43,13 @@ $db = mysqli_connect("localhost", "root", "","instajob");
     <h2>Login Here</h2>
   <form method ="post" action = "login.php">
      <p>User Name</p>
-          <input type="text" name="email" placeholder="Email">
+          <input type="text" name="email" placeholder="Email" id = "email">
           <p>Password</p>
-          <input type="password" name="password" placeholder="Password">
+          <input type="password" name="password" placeholder="Password" id = "password">
           <input type="submit" name="login_btn" autocomplete="off" value="Sign in">
           <a href="forget.php">Forget Password</a>
       </form>
   </div>
+
 </body>
 </html>

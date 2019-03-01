@@ -32,14 +32,14 @@
           $location = str_replace(' ', '+', $location);
           $url = "https://jobs.github.com/positions.json?description=".$description."&location=".$location;
           $json = file_get_contents($url);
-          $json_data = json_decode($json, true);
+          $json_data = (array)json_decode($json, true);
           $json_length = count($json_data);
-          $id_array = [];
-          $type_array = [];
-          $company_array = [];
-          $location_array = [];
-          $title_array = [];
-          $description_array = [];
+          $id_array = array();
+          $type_array = array();
+          $company_array = array();
+          $location_array = array();
+          $title_array = array();
+          $description_array = array();
           for ($x = 0; $x < $json_length; $x++) {
             $id_array[$x] = $json_data[$x]['id'];
             $type_array[$x] = $json_data[$x]['type'];
@@ -48,35 +48,51 @@
             $title_array[$x] = $json_data[$x]['title'];
             $description_array[$x] = $json_data[$x]['description'];
           }
-
           for ($x = 0; $x < $json_length; $x++) {
-            echo "<form method = 'post' action = 'search.php'>
-            <fieldset class='majorpoints'>
-                    <legend class='majorpointslegend'>$title_array[$x]</legend>
-                    <div class='hiders' style='display:none'>
-                      <h3>Job Type: $type_array[$x]</h3>
-                      <h3>Company: $company_array[$x]</h3>
-                      <h3>Location: $location_array[$x]</h3>
-                      <h3>Job Id: $id_array[$x]</h3>
-                      <div>Description: $description_array[$x]</div>
-                      </div>
-                    <button type='submit' name='add' value = '$x'>Add</button>
-                  </fieldset>
-                          </form>";
+              echo "<form method = 'post' action = 'search.php'>
+              <fieldset class='majorpoints'>
+                      <legend class='majorpointslegend'>$title_array[$x]</legend>
+                      <div class='hiders' style='display:none'>
+                        <h3>Job Type: $type_array[$x]</h3>
+                        <h3>Company: $company_array[$x]</h3>
+                        <h3>Location: $location_array[$x]</h3>
+                        <h3>Job Id: $id_array[$x]</h3>
+                        <div>Description: $description_array[$x]</div>
+                        </div>
+                      <button type='submit' name='add' value = '$x'>Add</button>
+                    </fieldset>
+                  </form>";
 
-          }
-          echo "<script type = 'text/javascript'>
-              $(document).ready(function(){
-                  $('.majorpoints').click(function(){
-                      $(this).find('.hiders').toggle();
+            }
+              echo "<script type = 'text/javascript'>
+                  $(document).ready(function(){
+                      $('.majorpoints').click(function(){
+                          $(this).find('.hiders').toggle();
+                      });
                   });
-              });
-                </script>";
+                    </script>";
+                  $_SESSION['id_array'] = $id_array;
+                  $_SESSION['type_array'] = $type_array;
+                  $_SESSION['company_array'] = $company_array;
+                  $_SESSION['location_array'] = $location_array;
+                  $_SESSION['title_array'] = $title_array;
+                  $_SESSION['description_array'] = $description_array;
+
         }
-        if (isset($_POST["add"])) {
-            echo $_POST["add"];
+        if (isset($_POST['add'])) {
+          $index = $_POST['add'];
+          $id_array = $_SESSION['id_array'];
+          $type_array = $_SESSION['type_array'];
+          $company_array = $_SESSION['company_array'];
+          $location_array =   $_SESSION['location_array'];
+          $title_array = $_SESSION['title_array'];
+          $description_array = $_SESSION['description_array'];
+          $sql = "INSERT INTO COMPANY (Job_Id, CName, Location)
+          VALUES('$id_array[$index]', '$company_array[$index]', '$location_array[$index]')";
+          mysqli_query($db, $sql);
         }
-         ?>
+
+      ?>
       </div>
 
   </div>

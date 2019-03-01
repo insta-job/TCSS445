@@ -74,3 +74,11 @@ h2 {
   font-weight: bold;
   text-decoration: none;
 }
+.wrong {
+margin-top: 5px;
+padding: 5px;
+background-color:#F00;
+border: 2px solid #666;
+width:auto;
+color: #000000;
+}

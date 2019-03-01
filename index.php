@@ -116,7 +116,44 @@
                 yield all the information you need such as location, benefit, qualification, salary, reviews, etc...
                 Come and use our Insta Job and make it becomes your favorite job search enginee.
               </p>
-              <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Get Started!</a>
+              <a class="btn btn-light btn-xl js-scroll-trigger" href="signup.php">Get Started!</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Services Section -->
+      <section class="page-section" id="services">
+        <div class="container">
+          <h2 class="text-center mt-0">At Your Service</h2>
+          <hr class="divider my-4">
+          <div class="row">
+            <div class="col-lg-3 col-md-6 text-center">
+              <div class="mt-5">
+                <i class="fas fa-4x fa-gem text-primary mb-4"></i>
+                <h3 class="h4 mb-2">Sturdy Themes</h3>
+                <p class="text-muted mb-0">Our themes are updated regularly to keep up with the market</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+              <div class="mt-5">
+                <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
+                <h3 class="h4 mb-2">Up to Date</h3>
+                <p class="text-muted mb-0">Our website caught up with all the job that get published.</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+              <div class="mt-5">
+                <i class="fas fa-4x fa-globe text-primary mb-4"></i>
+                <h3 class="h4 mb-2">Ready to Go</h3>
+                <p class="text-muted mb-0">You can use this to achieve your dream job!</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+              <div class="mt-5">
+                <i class="fas fa-4x fa-heart text-primary mb-4"></i>
+                <h3 class="h4 mb-2">Made with Love</h3>
+                <p class="text-muted mb-0">Is it really helpful services if it's not made with love?</p>
+              </div>
             </div>
           </div>
         </div>
@@ -170,6 +207,13 @@
                 </div>
               </a>
             </div>
+      </section>
+
+      <section class="page-section bg-dark text-white">
+        <div class="container text-center">
+          <h2 class="mb-4">Returning User</h2>
+          <a class="btn btn-light btn-xl" href="login.php">Login now</a>
+        </div>
       </section>
 
       <section id="contact">
