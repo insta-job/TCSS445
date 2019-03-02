@@ -1,7 +1,7 @@
 body {
    margin: 0;
    padding: 0;
-   background: url("../img/back.jpg");
+   background: url("../img/city.jpg");
    background-size: cover;
    background-repeat: no-repeat;
    background-attachment: fixed;
@@ -58,15 +58,20 @@ line-height: 50px;
 fieldset, legend {
   margin: 0;
   padding: 0;
+
 }
+
 fieldset {
   border: thin solid white;
   margin-top: 9px;
   padding: 2em;
-  width: 125%;
+  padding-right: 2em;
+  width: 155%;
   border-radius: 25px;
   border: 2px solid #808080;
   background:#f0911d;
+  box-shadow: 10px 10px 10px #000;
+  margin-bottom: 25px;
 }
 legend {
   font-weight: bold;
@@ -87,6 +92,7 @@ input {
   font-size: 20px;
   margin-right: 15px;
   box-sizing: border-box;
+  border-radius: 25px;
   transition: .5s;
 }
 input[type="text"] {
@@ -102,6 +108,7 @@ button {
   position: relative;
   left: -10px;
   top: 1px;
+  margin-left: 15em;
   text-align: center;
   border: none;
   width: 150px;
@@ -113,4 +120,18 @@ button {
 }
 input[type="submit"]:hover {
   background: #ff5722;
+}
+#logo {
+  height: 70px;
+  width: 70px;
+  border:1px solid #021a40;
+  float: right;
+}
+#title {
+  display: inline-block;
+}
+h2 {
+    font-size: 30px;
+    color: #000000;
+    font-family: cursive;
 }

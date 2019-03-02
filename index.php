@@ -61,6 +61,7 @@
                   error_reporting(0);
                   $userprofile = $_SESSION['email'];
                   $usertype = $_SESSION['user_type'];
+                  $_SESSION['user_type'] = $usertype;
                   if ($userprofile == true) {
                     echo '<li class="nav-item">
                           <a class="nav-link js-scroll-trigger" href="logout.php" id>Logout</a>
