@@ -25,6 +25,7 @@
         session_start();
         $db = mysqli_connect("localhost", "root", "","instajob");
         $usertype =  $_SESSION['user_type'];
+
         if (isset($_POST['search'])) {
           $description = mysqli_real_escape_string($db, $_POST['description']);
           $location = mysqli_real_escape_string($db, $_POST['location']);
@@ -70,6 +71,7 @@
                           <p>$howtoapply_array[$x]</p>
                           </div>
                         <button type='submit' name='add' value = '$x'>Add</button>
+                        <br><br>
                       </fieldset>
                     </form>";
               }

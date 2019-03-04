@@ -60,6 +60,7 @@
           }
         }
     }
+    mysqli_close($db);
   ?>
 </body>
 </html>

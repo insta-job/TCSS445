@@ -130,6 +130,12 @@ input[type="submit"]:hover {
 #title {
   display: inline-block;
 }
+
+a {
+  text-decoration: none;
+  font-size: 35px;
+
+}
 h2 {
     font-size: 30px;
     color: #000000;

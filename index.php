@@ -66,20 +66,29 @@
                     echo '<li class="nav-item">
                           <a class="nav-link js-scroll-trigger" href="logout.php" id>Logout</a>
                         </li>';
-                    echo '<li class="nav-item" idea>
-                          <a class="nav-link js-scroll-trigger" href="search.php" id>search </a>
-                        </li>';
+                    if ($usertype == 'recruiter') {
+                      echo '<li class="nav-item" idea>
+                            <a class="nav-link js-scroll-trigger" href="search.php" id>search </a>
+                          </li>';
+                      echo '<li class="nav-item" idea>
+                                <a class="nav-link js-scroll-trigger" href="dashboard.php" id>Dashboard</a>
+                              </li>';
+                    } else {
+                      echo '<li class="nav-item" idea>
+                                <a class="nav-link js-scroll-trigger" href="candidatedashboard.php" id>Dashboard</a>
+                              </li>';
+                    }
+
                     echo "<li class='nav-item'>
                             <a class='nav-link js-scroll-trigger' href='#' id>Welcome: $userprofile</a>
                           </li>";
-                    echo "<li class='nav-item'>
-                            <a class='nav-link js-scroll-trigger' href='#' id>Usertype: $usertype</a>
-                          </li>";
+
                     echo '<script type="text/javascript ">
                             document.getElementById("login").outerHTML = "";
                             document.getElementById("signup").outerHTML = "";
                           </script>';
                   }
+                  mysqli_close($db);
                 ?>
             </ul>
           </div>
@@ -212,8 +221,8 @@
 
       <section class="page-section bg-dark text-white">
         <div class="container text-center">
-          <h2 class="mb-4">Returning User</h2>
-          <a class="btn btn-light btn-xl" href="login.php">Login now</a>
+          <h2 class="mb-4">Managing your account now</h2>
+          <a class="btn btn-light btn-xl" href="login.php">Dashboard</a>
         </div>
       </section>
 

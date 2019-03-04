@@ -31,6 +31,7 @@ $db = mysqli_connect("localhost", "root", "","instajob");
      echo '</script>';
     }
   }
+  mysqli_close($db);
 ?>
 <!DOCTYPE html>
 <html>
