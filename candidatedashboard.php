@@ -22,6 +22,8 @@
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
+
+
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
@@ -73,7 +75,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="dashboard.<?php  ?>">
+        <a class="nav-link" href="dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -94,7 +96,11 @@
           <i class="fas fa-home"></i>
           <span>Home</span></a>
       </li>
-
+      <li class="nav-item">
+        <a class="nav-link" href="about.php">
+            <i class="fas fa-code"></i>
+            <span>About Us</span></a>
+      </li>
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -145,7 +151,7 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Welcome User</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id ="welcome"></span>
                 <img class="img-profile rounded-circle" src="img/user.png">
               </a>
               <!-- Dropdown - User Information -->
@@ -358,6 +364,7 @@
   </a>
 
 
+  <script src="js/welcome.js"></script>
 
 
 </body>
