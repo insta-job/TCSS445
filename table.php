@@ -182,7 +182,7 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+                    <p class="mb-4">Below is the table that display all the info about the job that recruiter has added. Recruiter can also modify the information if they are from the same company  .</p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -194,18 +194,35 @@
                           <?php
                               $db = mysqli_connect("localhost", "root", "","instajob");
                               $sql = "SELECT * FROM Job";
+                              $id_array = array();
                               if ($result=mysqli_query($db,$sql)) {
                                 // Return the number of rows in result set
-                                  $rowcount=mysqli_num_rows($result);
                                   while($row = mysqli_fetch_assoc($result)) {
                                     $id = $row['Job_ID'];
                                     $title = $row['Title'];
                                     $description = $row['Description'];
                                     $salary = $row['Salary'];
+                                    $sql1 = "SELECT * FROM Company";
+                                    $name;
+                                    $location;
+                                    if ($result1=mysqli_query($db,$sql1)) {
+                                      while($row1 = mysqli_fetch_assoc($result1)) {
+                                        if ($row['Job_ID'] == $row1['Job_ID']) {
+                                            $name = $row1['CName'];
+                                            $location = $row1['Location'];
+                                            $_SESSION['name'] = $name;
+                                            $_SESSION['location'] = $location;
+                                        }
+                                      }
+                                    }
+                                    $name = $_SESSION['name'];
+                                    $location = $_SESSION['location'];
                                     echo "<div class='table-responsive'>
                                     <table class='table table-bordered' id='dataTable' width='100%' cellspacing='0'>
                                     <thead>
                                       <tr>
+                                        <th>Company Name</th>
+                                        <th>Location</th>
                                         <th>Job_ID</th>
                                         <th>Title</th>
                                         <th>Description</th>
@@ -214,6 +231,8 @@
                                     </thead>
                                     <tbody>
                                     <tr>
+                                        <th>$name</th>
+                                        <th>$location</th>
                                         <th>$id</th>
                                           <th>$title</th>
                                             <th>$description</th>
@@ -223,7 +242,9 @@
                                     </table>
                                     </div>";
                                   }
-                                }
+
+
+                              }
                            ?>
             </div>
           </div>
