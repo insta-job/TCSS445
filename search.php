@@ -125,6 +125,8 @@
           $location = str_replace('+', ' ', $location);
           $salary = 70000;
           $length = count($id_array);
+          $temp_array = array();
+          $count = 0;
           echo "<script type = 'text/javascript'>
                  document.getElementById('description').value = '$description';
                  document.getElementById('location').value = '$location';
@@ -153,11 +155,15 @@
                       });
                   });
                     </script>";
+          $count++;
+          $_SESSION['description'] = $temp_array;
           $sql = "INSERT INTO Company(Job_ID, CName, Location)
           VALUES('$id_array[$index]', '$company_array[$index]', '$location_array[$index]')" ;
           mysqli_query($db, $sql);
+          $text = $description_array[$index];
+          $text = mysqli_real_escape_string($db, $text);
           $sql1 = "INSERT INTO job(Job_ID, TItle, Description, Salary)
-          VALUES('$id_array[$index]', '$title_array[$index]', '', '$salary')" ;
+          VALUES('$id_array[$index]', '$title_array[$index]', '$text', '$salary')" ;
           mysqli_query($db, $sql1);
         }
         mysqli_close($db);

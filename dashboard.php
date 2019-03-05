@@ -58,6 +58,8 @@
                if ($row['Email'] == $userprofile) {
                  $fName = $row['FName'];
                  $lName = $row['LName'];
+                 $id = $row['Id'];
+                 $_SESSION['Id'] = $id;
                  echo "<script type = 'text/javascript'>
                  document.getElementById('name').innerHTML=' $fName $lName';
                  </script>";
@@ -65,13 +67,14 @@
                }
             }
         }
+        mysqli_close($db);
       ?>
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="dashboard.<?php  ?>">
+        <a class="nav-link" href="dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -83,15 +86,28 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Addons
+        Interface
       </div>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="tables.php">
+        <a class="nav-link" href="table.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Tables</span></a>
       </li>
+
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+              <a class="nav-link" href="index.php">
+                <i class="fas fa-home"></i>
+                <span>Home</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.php">
+                  <i class="fas fa-code"></i>
+                  <span>About Us</span></a>
+            </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -143,7 +159,7 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Welcome User</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id = "welcome"></span>
                 <img class="img-profile rounded-circle" src="img/user.png">
               </a>
               <!-- Dropdown - User Information -->
@@ -255,27 +271,39 @@
 
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Quality of a good recruiter</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Upload company, department, location you work for</h6>
 
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <b>Here are the key traits today's top recruiters possess:</b>
-                  <ol>
-                    <li>A good listener and clear communicator.</li>
-                    <li>Creates a sense of urgency so that matches actually get made and no time is wasted.</li>
-                    <li>Have a keen sense of timing, patience and the ability to act quickly when the time is right.</li>
-                    <li>Ability to filter through a laundry-list of requirements and decipher which are truly motivating factors -- aka. the must-haves vs nice-to-haves.</li>
-                    <li>Can motivate, support, and whip someone into shape when needed</li>
-                    <li>Understanding of available recruiting tools and ability to identify the right bait to lure your catch</li>
-                    <li>Creates an optimal process that can be customized for individuals </li>
-                    <li>Manages egos and expectations</li>
-                    <li>Pays attention to the details. All of them.</li>
-                 </ol>
+                  <form action = "dashboard.php" method = "post">
+                    <label><b>Input your Company</b></label>
+                    <input type = "text" name = "company">
+                    <br>
+                    <label><b>Input your Company Location</b></label>
+                    <input type = "text" name = "location">
+                    <br>
+                    <label><b>Input your Department</b></label>
+                    <input type = "text" name = "department">
+                    <br>
+                    <input type = "submit" name = "submit">
+                  </form>
                 </div>
               </div>
             </div>
-
+            <?php
+                $db = mysqli_connect("localhost", "root", "","instajob");
+                if (isset($_POST['submit'])) {
+                  $company_name = $_POST['company'];
+                  $location = $_POST['location'];
+                  $department_name = $_POST['department'];
+                  $id = $_SESSION['Id'];
+                  $sql = "INSERT INTO Recruiter(Id, Company_Name, Company_Location, Department)
+                  VALUES('$id', '$company_name', '$location', '$department_name')";
+                  mysqli_query($db, $sql);
+                }
+                mysqli_close($db);
+             ?>
             <!-- Pie Chart -->
             <div class="col-xl-4 col-lg-5">
               <div class="card shadow mb-4">
@@ -347,10 +375,7 @@
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-
-
-
-
+  <script src="js/welcome.js"></script>
 </body>
 
 </html>
