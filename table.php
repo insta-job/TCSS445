@@ -239,6 +239,16 @@
                                               <th>$salary</th>
                                     </tr>
                                     </tbody>
+                                    <tfoot>
+                                      <tr>
+                                        <td>Company Name</td>
+                                        <td>Location</td>
+                                        <td>Job_ID</td>
+                                        <td>Title</td>
+                                        <td>Description</td>
+                                        <td>Salary</td>
+                                        </tr>
+                                        </tfoot>
                                     </table>
                                     </div>";
                                   }

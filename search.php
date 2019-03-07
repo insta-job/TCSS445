@@ -15,6 +15,7 @@
         <h1>Insta's Job</h1>
     </div>
     <h2>Search</h1>
+      <h2><a href = "index.php">Home</a></h2>
       <form method ="post" action = "search.php">
           <input type="text" name="description" placeholder="description" id = "description">
         <input type="text" name="location" placeholder="location" id = "location">

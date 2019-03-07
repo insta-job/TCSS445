@@ -337,25 +337,103 @@
               <!-- Illu strations -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Reminder</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Candidate Information</h6>
                 </div>
                 <div class="card-body">
-                  <div class="text-center">
-                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="img/undraw_posting_photo.svg" alt="">
-                  </div>
-                  <p>With this page recruiters can check what job they have add and if that job is from the company they are currently working they can edit the job that they posted.</p>
-                  <a target="_blank" rel="nofollow" href="index.php">Go back to main page&rarr;</a>
+
+                  <?php
+                      $db = mysqli_connect("localhost", "root", "","instajob");
+                      $sql = "SELECT * FROM users WHERE user_type = 'candidate'";
+                      if ($result=mysqli_query($db,$sql)) {
+                        while($row = mysqli_fetch_assoc($result)) {
+                            $id = $row['Id'];
+                            $fName = $row['FName'];
+                            $lName = $row['LName'];
+                            $gender = $row['Gender'];
+                            $email = $row['Email'];
+                            $phone = $row['Phone'];
+                            $_SESSION['id'] = $id;
+                            echo "<div class='table-responsive'>
+                            <table class='table table-bordered' id='dataTable' width='100%' cellspacing='0'>
+                            <thead>
+                              <tr>
+                                <th>User ID</th>
+                                <th>FName</th>
+                                <th>LName</th>
+                                <th>Gender</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th>$id</th>
+                                <th>$fName</th>
+                                <th>$lName</th>
+                                  <th>$gender</th>
+                                    <th>$email</th>
+                                      <th>$phone</th>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                              <tr>
+                                <td>User ID</td>
+                                <td>FName</td>
+                                <td>LName</td>
+                                <td>Gender</td>
+                                <td>Email</td>
+                                <td>Phone</td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                            </div>";
+                        }
+                      }
+                   ?>
                 </div>
               </div>
 
               <!-- Approach -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Candidate Skills and Resume</h6>
                 </div>
                 <div class="card-body">
-                  <p></p>
-                  <p class="mb-0">Our developer team from Instajob ensure the quality and will mantain the website regularly.</p>
+                  <?php
+                  $db = mysqli_connect("localhost", "root", "","instajob");
+                  $id = $_SESSION['id'];
+                  $sql = "SELECT * FROM Resume WHERE Id = '$id'";
+                  if ($result=mysqli_query($db,$sql)) {
+                    while($row = mysqli_fetch_assoc($result)) {
+                      $skill = $row['Skills'];
+                      $resume = $row['Resume_path'];
+
+                      echo "<div class='table-responsive'>
+                      <table class='table table-bordered' id='dataTable' width='100%' cellspacing='0'>
+                      <thead>
+                        <tr>
+                          <th>User's Skills</th>
+                          <th>Resume (Click the link to download)</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <tr>
+                          <th>$skill</th>
+                          <th><a href = '$resume'>Resume</a></th>
+                      </tr>
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <td>User ID</td>
+                          <td>FName</td>
+                          </tr>
+                          </tfoot>
+                      </table>
+                      </div>";
+                    }
+                  }
+                   ?>
                 </div>
               </div>
 
