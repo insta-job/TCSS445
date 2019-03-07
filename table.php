@@ -187,7 +187,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                       <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Data Table for all the job that you have added</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Data Table for all the job that you have added. Click edit to modify the job info</h6>
                       </div>
                       <div class="card-body">
                         <div class="table-responsive">
@@ -198,6 +198,7 @@
                               if ($result=mysqli_query($db,$sql)) {
                                 // Return the number of rows in result set
                                   while($row = mysqli_fetch_assoc($result)) {
+                                    $count = 0;
                                     $id = $row['Job_ID'];
                                     $title = $row['Title'];
                                     $description = $row['Description'];
@@ -218,8 +219,9 @@
                                     $name = $_SESSION['name'];
                                     $location = $_SESSION['location'];
                                     echo "<div class='table-responsive'>
-                                    <table class='table table-bordered' id='dataTable' width='100%' cellspacing='0'>
-                                    <thead>
+                                    <form action = 'table.php' method = 'POST'>
+                                      <table class='table table-bordered' id='dataTable' width='100%' cellspacing='0'>
+                                      <thead>
                                       <tr>
                                         <th>Company Name</th>
                                         <th>Location</th>
@@ -250,10 +252,18 @@
                                         </tr>
                                         </tfoot>
                                     </table>
+                                    <button name='submit' type='submit' value = '$id'>Edit</button>
+                                    </form>
+                                        <br>
                                     </div>";
                                   }
+                                  if (isset($_POST['submit'])) {
+                                    $id = $_POST['submit'];
+                                    $sql1 = "SELECT * FROM Job WHERE Job_ID = '$id'";
+                                    if ($result1 = mysqli_query($db, $sql1)) {
 
-
+                                    }
+                                  }
                               }
                            ?>
             </div>
