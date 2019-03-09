@@ -13,6 +13,8 @@
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -219,13 +221,12 @@
                                     $name = $_SESSION['name'];
                                     $location = $_SESSION['location'];
                                     echo "<div class='table-responsive'>
-                                    <form action = 'table.php' method = 'POST'>
-                                      <table class='table table-bordered' id='dataTable' width='100%' cellspacing='0'>
+                                      <table id='editable_table' class='table table-bordered table-striped' id='dataTable' width='100%' cellspacing='0' >
                                       <thead>
                                       <tr>
+                                      <th>Job_ID</th>
                                         <th>Company Name</th>
                                         <th>Location</th>
-                                        <th>Job_ID</th>
                                         <th>Title</th>
                                         <th>Description</th>
                                         <th>Salary</th>
@@ -233,37 +234,30 @@
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <th>$name</th>
-                                        <th>$location</th>
-                                        <th>$id</th>
-                                          <th>$title</th>
-                                            <th>$description</th>
-                                              <th>$salary</th>
+                                      <td>$id</td>
+                                      <td>$name</td>
+                                      <td>$location</td>
+                                      <td>$title</td>
+                                      <td>$description</td>
+                                      <td>$salary</td>
                                     </tr>
                                     </tbody>
                                     <tfoot>
                                       <tr>
+                                        <td>Job_ID</td>
                                         <td>Company Name</td>
                                         <td>Location</td>
-                                        <td>Job_ID</td>
                                         <td>Title</td>
                                         <td>Description</td>
                                         <td>Salary</td>
                                         </tr>
                                         </tfoot>
                                     </table>
-                                    <button name='submit' type='submit' value = '$id'>Edit</button>
-                                    </form>
-                                        <br>
+                                      <br>
                                     </div>";
-                                  }
-                                  if (isset($_POST['submit'])) {
-                                    $id = $_POST['submit'];
-                                    $sql1 = "SELECT * FROM Job WHERE Job_ID = '$id'";
-                                    if ($result1 = mysqli_query($db, $sql1)) {
 
-                                    }
                                   }
+
                               }
                            ?>
             </div>
@@ -283,6 +277,30 @@
     <i class="fas fa-angle-up"></i>
   </a>
   <script src="js/welcome.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="jquery-tabledit/jquery.tabledit.js"></script>
+         <script>
+         $(document).ready(function(){
+              $('#editable_table').Tabledit({
+               url:'action.php',
+               columns:{
+                identifier:[0, 'Job_ID'],
+                editable:[[1, 'CName'], [2, 'Location'], [3, 'Title'], [4, 'Description'], [5, 'Salary']]
+               },
+               restoreButton:false,
+               onSuccess:function(data, textStatus, jqXHR)
+               {
+                if(data.action == 'delete')
+                {
+                 $('#'+data.id).remove();
+                }
+               }
+              });
+
+         });
+         </script>
+
 </body>
 
 </html>
