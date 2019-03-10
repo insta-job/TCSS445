@@ -6,19 +6,22 @@ $input = filter_input_array(INPUT_POST);
 $title = mysqli_real_escape_string($db, $input["Title"]);
 $description = mysqli_real_escape_string($db, $input["Description"]);
 $salary = mysqli_real_escape_string($db, $input["Salary"]);
+$company = mysqli_real_escape_string($db, $input["CName"]);
+$location =  mysqli_real_escape_string($db, $input["Location"]);
 
 if($input["action"] === 'edit')
 {
- $query = "
- UPDATE job
- SET Title = '".$title."',
- Description = '".$description."',
- Salary = '".$salary."'
- WHERE Job_ID = '".$input["Job_ID"]."'
- ";
-
- mysqli_query($db, $query);
-
+ $sql = "SELECT * FROM Recruiter WHERE Company_Name = '$company' AND Company_Location = '$location'";
+ if ($result = mysqli_query($db, $sql)) {
+   $query = "
+   UPDATE job
+   SET Title = '".$title."',
+   Description = '".$description."',
+   Salary = '".$salary."'
+   WHERE Job_ID = '".$input["Job_ID"]."'
+   ";
+   mysqli_query($db, $query);
+ }
 }
 if($input["action"] === 'delete')
 {
