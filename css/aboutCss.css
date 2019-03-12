@@ -1,5 +1,5 @@
 body {
-    background-color: #230029;  
+    background-color: #230029;
      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
      font-size: 14px;
      color:#000;
@@ -7,7 +7,7 @@ body {
      padding: 0;
      width: 100%;
      height: 100%;
-     overflow: hidden;
+     overflow: auto;
 }
 #particles-js {
   position: absolute;
@@ -121,7 +121,6 @@ body {
 }
 ul {
   position: absolute;
-
   left: 50%;
   transform: translate(-50%, -50%);
   margin: 0;

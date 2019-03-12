@@ -11,8 +11,7 @@
 </head>
 <body>
   <div id = "particles-js">
-    <span><p>Meet Our Developers</p></span>
-
+  <p>Meet Our Developers</p>
   </div>
   <!-- Swiper -->
 
@@ -50,10 +49,8 @@
         <h3>Huy Tran<br><span>Developer</span></h3>
       </div>
     </div>
-
   </div>
   <h2> Follow InstaJob At</h2>
-  <br><br><br><br>
   <ul>
     <li>
       <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
