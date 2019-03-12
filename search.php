@@ -9,12 +9,13 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   </head>
 <body>
+  <div id = "particles-js"></div>
   <div class = "box">
     <div class="wrap">
         <a href = 'index.php'><img src="img/logo.png"/></a>
         <h1>Insta's Job</h1>
     </div>
-    <h2>Search</h1>
+    <h2>Search</h2>
       <h2><a href = "index.php">Home</a></h2>
       <form method ="post" action = "search.php">
           <input type="text" name="description" placeholder="description" id = "description">
@@ -172,6 +173,7 @@
       </div>
 
   </div>
-
+  <script type = "text/javascript" src = "particles.js"></script>
+  <script type = "text/javascript" src = "test1.js"></script>
 </body>
 </html>
