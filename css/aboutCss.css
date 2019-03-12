@@ -1,6 +1,5 @@
 body {
-     background: url("../img/background.jpg");
-     background-size: cover;
+    background-color: #230029;  
      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
      font-size: 14px;
      color:#000;
@@ -10,7 +9,11 @@ body {
      height: 100%;
      overflow: hidden;
 }
-
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
 .swiper-container {
      width: 100%;
      padding-top: 200px;

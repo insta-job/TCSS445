@@ -5,13 +5,15 @@
 <title>Meet Our Team</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
   <link href="css/swiper.min.css" rel="stylesheet">
-  <link href="css/about.css" rel="stylesheet">
+  <link href="css/aboutCss.css" rel="stylesheet">
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
  <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
 </head>
 <body>
+  <div id = "particles-js">
+    <span><p>Meet Our Developers</p></span>
 
-  <span><p>Meet Our Developers</p></span>
+  </div>
   <!-- Swiper -->
 
 <div class="swiper-container">
@@ -120,5 +122,7 @@
       },
     });
   </script>
+  <script type = "text/javascript" src = "particles.js"></script>
+  <script type = "text/javascript" src = "test.js"></script>
 </body>
 </html>
