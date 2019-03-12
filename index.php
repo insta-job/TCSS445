@@ -77,6 +77,9 @@
                       echo '<li class="nav-item" idea>
                                 <a class="nav-link js-scroll-trigger" href="candidatedashboard.php" id>Dashboard</a>
                               </li>';
+                              echo '<li class="nav-item" idea>
+                                    <a class="nav-link js-scroll-trigger" href="search.php" id>search </a>
+                                  </li>';
                     }
 
                     echo "<li class='nav-item'>
