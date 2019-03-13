@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <title>Let's Start Your Search Now</title>
-    <link rel="stylesheet" href="css/searchCss.css">
+    <link rel="stylesheet" href="css/searchStyle.css">
       <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   </head>
@@ -59,6 +59,7 @@
             $howtoapply_array[$x] = $json_data[$x]['how_to_apply'];
             $companylogo_array[$x] = $json_data[$x]['company_logo'];
           }
+
           for ($x = 0; $x < $json_length; $x++) {
               if($usertype == 'recruiter') {
                 echo "<form method = 'post' action = 'search.php'>
@@ -159,14 +160,33 @@
                     </script>";
           $count++;
           $_SESSION['description'] = $temp_array;
-          $sql = "INSERT INTO Company(Job_ID, CName, Location)
-          VALUES('$id_array[$index]', '$company_array[$index]', '$location_array[$index]')" ;
-          mysqli_query($db, $sql);
-          $text = $description_array[$index];
-          $text = mysqli_real_escape_string($db, $text);
-          $sql1 = "INSERT INTO job(Job_ID, TItle, Description, Salary)
-          VALUES('$id_array[$index]', '$title_array[$index]', '$text', '$salary')" ;
-          mysqli_query($db, $sql1);
+          $query = "SELECT * FROM recruiter";
+          if ($result= mysqli_query($db, $query)) {
+            while($row = mysqli_fetch_assoc($result)) {
+                $company_name = $row['Company_Name'];
+                $_SESSION['Company_Name'] = $company_name;
+            }
+          }
+
+          $query = "SELECT * FROM recruiter";
+          if ($result = mysqli_query($db, $query)) {
+            while($row = mysqli_fetch_assoc($result)) {
+              $name = $row['Company_Name'];
+              $_SESSION['Company_Name'] = $name;
+              break;
+            }
+          }
+          $cn = $_SESSION['Company_Name'];
+          if ($cn == $company_array[$index]) {
+            $sql = "INSERT INTO Company(Job_ID, CName, Location)
+            VALUES('$id_array[$index]', '$company_array[$index]', '$location_array[$index]')" ;
+            mysqli_query($db, $sql);
+            $text = $description_array[$index];
+            $text = mysqli_real_escape_string($db, $text);
+            $sql1 = "INSERT INTO job(Job_ID, TItle, Description, Salary)
+            VALUES('$id_array[$index]', '$title_array[$index]', '$text', '$salary')" ;
+            mysqli_query($db, $sql1);
+          }
         }
         mysqli_close($db);
       ?>

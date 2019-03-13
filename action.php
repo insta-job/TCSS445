@@ -11,8 +11,6 @@ $location =  mysqli_real_escape_string($db, $input["Location"]);
 
 if($input["action"] === 'edit')
 {
- $sql = "SELECT * FROM Recruiter WHERE Company_Name = '$company' AND Company_Location = '$location'";
- if ($result = mysqli_query($db, $sql)) {
    $query = "
    UPDATE job
    SET Title = '".$title."',
@@ -20,8 +18,7 @@ if($input["action"] === 'edit')
    Salary = '".$salary."'
    WHERE Job_ID = '".$input["Job_ID"]."'
    ";
-   mysqli_query($db, $query);
- }
+   mysqli_query($db, $query); 
 }
 if($input["action"] === 'delete')
 {

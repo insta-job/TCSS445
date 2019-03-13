@@ -48,6 +48,7 @@
         session_start();
         $db = mysqli_connect("localhost", "root", "","instajob");
         $userprofile = $_SESSION['email'];
+        $_SESSION['email'] = $userprofile;
         $query = "SELECT * FROM users WHERE Email = '$userprofile'";
         $result = mysqli_query($db, $query);
         $count = mysqli_num_rows($result);
@@ -309,21 +310,26 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Top Recruiter Skills</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Upload a new job</h6>
 
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <b>The Top 7 Skills Needed to be a Recruiter:</b>
-                  </ul>
-                    <li>Communication skills</li>
-                    <li>Marketing and sales skills</li>
-                    <li>Motivated and persistent</li>
-                    <li>Relationship-building skills</li>
-                    <li>Multitasking skills</li>
-                    <li>Time-management skills</li>
-                    <li>IT and social media skills</li>
-                    <ul>
+                  <form action="addnewjob.php" method = "post" name = "input">
+                    <label><b>Job Title</b></label>
+                    <input type = "text" name = "title">
+                    <br>
+                    <label><b>Description</b></label>
+                    <textarea name="description" cols = "56" rows = "5">
+                    </textarea>
+                    <label><b>Salary</b></label>
+                    <input type = "text" name = "salary">
+                    <br>
+                    <label><b>Location</b></label>
+                    <input type = "text" name = "location">
+                    <br>
+                      <input type="submit" name = "submit" value = "add">
+                    </form>
                 </div>
               </div>
             </div>
@@ -352,7 +358,6 @@
                             $gender = $row['Gender'];
                             $email = $row['Email'];
                             $phone = $row['Phone'];
-                            $_SESSION['id'] = $id;
                             echo "<div class='table-responsive'>
                             <table class='table table-bordered' id='dataTable' width='100%' cellspacing='0'>
                             <thead>

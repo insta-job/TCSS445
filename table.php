@@ -43,7 +43,7 @@
           <i class="fas fa-laugh-wink"></i>
         </div>
         <div class="sidebar-brand-text mx-3">Welcome
-          <span   class="text-danger" id = "name"></span>
+          <span class="text-danger" id = "name"></span>
         </div>
       </a>
       <?php
@@ -55,7 +55,7 @@
         $count = mysqli_num_rows($result);
         $fName;
         $lName;
-          if ($count == 1) {
+        if ($count == 1) {
           while($row = mysqli_fetch_assoc($result)) {
                if ($row['Email'] == $userprofile) {
                  $fName = $row['FName'];
@@ -191,8 +191,19 @@
                       <div class="card-header py-3">
                         <h6 class="m-0 font-weight-bold text-primary">Data Table for all the job that you have added. Click edit to modify the job info</h6>
                       </div>
-                      <div class="card-body">
+                      <div class="card-body" style = "padding:0">
                         <div class="table-responsive">
+                          <table id='editable_table' class='table table-bordered table-striped' id='dataTable' width='100%' cellspacing='0'>
+                            <thead>
+                              <tr>
+                              <th>Job_ID</th>
+                                <th>Company Name</th>
+                                <th>Location</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Salary</th>
+                              </tr>
+                            </thead>
                           <?php
                               $db = mysqli_connect("localhost", "root", "","instajob");
                               $sql = "SELECT * FROM Job";
@@ -202,6 +213,7 @@
                                   while($row = mysqli_fetch_assoc($result)) {
                                     $count = 0;
                                     $id = $row['Job_ID'];
+                                    $_SESSION['Job_ID'] = $id;
                                     $title = $row['Title'];
                                     $description = $row['Description'];
                                     $salary = $row['Salary'];
@@ -220,18 +232,7 @@
                                     }
                                     $name = $_SESSION['name'];
                                     $location = $_SESSION['location'];
-                                    echo "<div class='table-responsive'>
-                                      <table id='editable_table' class='table table-bordered table-striped' id='dataTable' width='100%' cellspacing='0' >
-                                      <thead>
-                                      <tr>
-                                      <th>Job_ID</th>
-                                        <th>Company Name</th>
-                                        <th>Location</th>
-                                        <th>Title</th>
-                                        <th>Description</th>
-                                        <th>Salary</th>
-                                      </tr>
-                                    </thead>
+                                    echo"
                                     <tbody>
                                     <tr>
                                       <td>$id</td>
@@ -241,8 +242,12 @@
                                       <td>$description</td>
                                       <td>$salary</td>
                                     </tr>
-                                    </tbody>
-                                    <tfoot>
+                                    </tbody>";
+                                  }
+
+                              }
+                           ?>
+                           <tfoot>
                                       <tr>
                                         <td>Job_ID</td>
                                         <td>Company Name</td>
@@ -252,14 +257,8 @@
                                         <td>Salary</td>
                                         </tr>
                                         </tfoot>
-                                    </table>
-                                      <br>
-                                    </div>";
-
-                                  }
-
-                              }
-                           ?>
+                         </table>
+                       </div>
             </div>
           </div>
 
@@ -279,27 +278,28 @@
   <script src="js/welcome.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <script src="jquery-tabledit/jquery.tabledit.js"></script>
-         <script>
-         $(document).ready(function(){
-              $('#editable_table').Tabledit({
-               url:'action.php',
-               columns:{
-                identifier:[0, 'Job_ID'],
-                editable:[[1, 'CName'], [2, 'Location'], [3, 'Title'], [4, 'Description'], [5, 'Salary']]
-               },
-               restoreButton:false,
-               onSuccess:function(data, textStatus, jqXHR)
-               {
-                if(data.action == 'delete')
-                {
-                 $('#'+data.id).remove();
-                }
-               }
-              });
+  <script src="jquery-tabledit-1.2.3/jquery.tabledit.js"></script>
+  <script>
+  $(document).ready(function(){
+       $('#editable_table').Tabledit({
+        url:'action.php',
+        columns:{
+          identifier:[0, 'Job_ID'],
+          editable:[[1, 'CName'], [2, 'Location'], [3, 'Title'], [4, 'Description'], [5, 'Salary']]
+          },
+            restoreButton:false,
+           onSuccess:function(data, textStatus, jqXHR)
+            {
+             if(data.action == 'delete')
+             {
+              $('#'+data.id).remove();
+             }
+            }
+           });
 
-         });
-         </script>
+      });
+ </script>
+
 
 </body>
 

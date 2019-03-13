@@ -9,13 +9,12 @@ $db = mysqli_connect("localhost", "root", "","instajob");
    $result = mysqli_query($db, $query);
    $count = mysqli_num_rows($result);
    if ($count == 1) {
-     echo "successfully login";
      $_SESSION['email'] = $email;
      while($row = mysqli_fetch_assoc($result)) {
-          if ($row['Email'] == $email && $row['Password'] == $password) {
-            $usertype = $row['user_type'];
-            break;
-          }
+    if ($row['Email'] == $email && $row['Password'] == $password) {
+       $usertype = $row['user_type'];
+       break;
+    }
        }
       $_SESSION['user_type'] = $usertype;
       $_SESSION['start'] = time(); // Taking now logged in time.
