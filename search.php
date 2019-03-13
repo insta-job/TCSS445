@@ -186,6 +186,10 @@
             $sql1 = "INSERT INTO job(Job_ID, TItle, Description, Salary)
             VALUES('$id_array[$index]', '$title_array[$index]', '$text', '$salary')" ;
             mysqli_query($db, $sql1);
+          } else {
+            echo '<script language="javascript">';
+            echo 'alert("Cant add job that not from the same company")';
+           echo '</script>';
           }
         }
         mysqli_close($db);
