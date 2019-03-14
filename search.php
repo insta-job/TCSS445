@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <title>Let's Start Your Search Now</title>
-    <link rel="stylesheet" href="css/searchStyle.css">
+    <link rel="stylesheet" href="css/searchNewCss.css">
       <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   </head>
@@ -59,8 +59,37 @@
             $howtoapply_array[$x] = $json_data[$x]['how_to_apply'];
             $companylogo_array[$x] = $json_data[$x]['company_logo'];
           }
-
+          $sql4 = "SELECT * FROM recruiter";
+          if ($result2 = mysqli_query($db, $sql4)) {
+            while($row = mysqli_fetch_assoc($result2)) {
+              $recruiter_company_name = $row['Company_Name'];
+              $recruiter_company_location = $row['Company_Location'];
+              $_SESSION['Cname'] = $recruiter_company_name;
+              $_SESSION['Clocation'] = $recruiter_company_location;
+            }
+            $cname = $_SESSION['Cname'];
+            $clocation = $_SESSION['Clocation'];
+            $sql5 = "SELECT * FROM Company WHERE CName = '$cname'";
+            $index = 0;
+            $locationArray = [];
+            if ($result4 = mysqli_query($db, $sql5)) {
+              while($row1 = mysqli_fetch_assoc($result4)) {
+                if ($row1['CName'] == $cname) {
+                  if ($row1['Location'] != $clocation) {
+                     $locationArray[$index] =  $row1['Location'];
+                     $_SESSION['locationArray'] = $locationArray;
+                     $index++;
+                  }
+                }
+              }
+            }
+          }
+          $id_for_job = $_SESSION['id'];
+          $locationArray = $_SESSION['locationArray'];
           for ($x = 0; $x < $json_length; $x++) {
+              if ($company_array[$x] == $_SESSION['Cname']) {
+                  $_SESSION['Logo'] = $companylogo_array[$x];
+              }
               if($usertype == 'recruiter') {
                 echo "<form method = 'post' action = 'search.php'>
                 <fieldset class='majorpoints'>
@@ -78,6 +107,8 @@
                       </fieldset>
                     </form>";
               }
+
+
               if ($usertype == 'candidate') {
                 echo "<form method = 'post' action = 'search.php'>
                 <fieldset class='majorpoints'>
@@ -101,6 +132,37 @@
                       });
                   });
                     </script>";
+                    $sql5 = "SELECT * FROM job WHERE Job_ID = '$id_for_job'";
+                    if ($result5 = mysqli_query($db, $sql5)) {
+                      $size = sizeof($locationArray);
+                      $count = 0;
+                      $cname = $_SESSION['Cname'];
+                      $logo = $_SESSION['Logo'];
+                      while($row = mysqli_fetch_assoc($result5)) {
+                        $title = $row['Title'];
+                        $salary = $row['Salary'];
+                        $description = $row['Description'];
+                        echo "<form method = 'post' action = 'search.php'>
+                                <fieldset class='majorpoints'>
+                                <legend class='majorpointslegend' id = 'title'>$title<img src ='$logo' id = 'logo'></legend>
+                                <div class='hiders' style='display:none'>
+                                  <h3>Company: $cname</h3>
+                                  <h3>Location: $locationArray[$count]</h3>
+                                  <h3>Job Id: $id_for_job</h3>
+                                  <div>Description: $description<div>
+                                  <p>Salary: $salary</p>
+                                  </div>
+                                <br><br>
+                              </fieldset>
+                              </form>";
+                              if ($count < $size - 1) {
+                                break;
+                              } else {
+                                $count++;
+                              }
+                      }
+
+                    }
                   $_SESSION['id_array'] = $id_array;
                   $_SESSION['type_array'] = $type_array;
                   $_SESSION['company_array'] = $company_array;
@@ -151,6 +213,7 @@
                   </form>";
 
             }
+
               echo "<script type = 'text/javascript'>
                   $(document).ready(function(){
                       $('.majorpoints').click(function(){
@@ -158,6 +221,8 @@
                       });
                   });
                     </script>";
+
+
           $count++;
           $_SESSION['description'] = $temp_array;
           $query = "SELECT * FROM recruiter";

@@ -44,7 +44,7 @@
                 <a class="nav-link js-scroll-trigger" href="about.php">About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="index.html">Home</a>
+                <a class="nav-link js-scroll-trigger" href="index.php">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link js-scroll-trigger" href="#portfolio">Contact</a>
