@@ -1,7 +1,8 @@
 # Insta Job
 Insta Job is a job search web site that our team created to help individuals that share our same profession search for a job. Our website uses a relational database which will be the core topic covered in the sections to come. Databases are a crucial tool for organizing and accessing data using technology. As technology advances more and more data is being collected databases are where we store this data. Due to the amount of data handling it is more crucial than ever to understand how to create, store and access data. After all, what is the point of having information if you cannot easily get to it?
 Our intention in this paper is to use our website as an example on how to correctly implement a relational database on a small scale. This will be our step by step process from laying out the requirements all the way to physically creating our database. Even after creation we will cover how we re-organized our design to ensure normalization and the most effective ways to access and store our data using realistic queries as examples with the utility that each of them serve.  
-
+# Demo
+[Instajob Link] (http://instajob.epizy.com/index.php)
 # Run by using xampp (apache, mySQL)
 After running xampp, download the zipfile and exact it inside the htdocs folder of the xampp folder. Goes in the browser and type localhost/instajob folder which will lead to the main page. But also open a new page type localhost/phpmyadmin and create a new database call instajob and insert the SQL inside the folder to successfully create the database.
  
